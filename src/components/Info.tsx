@@ -1,3 +1,4 @@
+'use client'
 interface InfoProps {
     title: string;
     text: string;
@@ -10,7 +11,7 @@ export default function Info({ title, text, className }: InfoProps) {
                 <p className="xl:mt-0 sm:mt-4 text-sm font-semibold text-[#969696]">{title}</p>
                 <p className="mt-2 font-medium text-2xl text-[#2B2B2B]">{text}</p>
             </div>
-            <div className={`absolute h-full left-0 ml-60 ${className} border-[#dcdcdc]`}></div>
+            <div className={`absolute -mt-2 h-full left-0 ml-60 ${className} border-[#dcdcdc]`}></div>
         </div>
     );
 }

@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -36,7 +37,7 @@ export default function Leaflet({ location }: LeafletProps) {
         marker.bindPopup(popupContent).openPopup();
     }, [location]);
 
-    return <div id="map" className='absolute top-0 w-full h-screen -z-10' />
-
-        ;
+    return (
+        <div id="map" className='absolute top-0 w-full h-screen -z-10' />
+    )
 }
