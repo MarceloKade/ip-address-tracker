@@ -10,27 +10,34 @@ interface HeaderProps {
 export default function Header({ onSearch }: HeaderProps) {
     const [locationData, setLocationData] = useState<LocationData | null>(null);
     const [ipAddress, setIpAddress] = useState('');
+    const [isInitialLoad, setIsInitialLoad] = useState(true);
 
     useEffect(() => {
         const getLocationData = async () => {
-            const data = await fetchLocationData();
+            const data = await fetchLocationData(ipAddress);
             setLocationData(data);
+            onSearch(ipAddress);
         };
 
-        getLocationData();
-    }, []);
+        if (isInitialLoad) {
+            getLocationData();
+            setIsInitialLoad(false);
+        }
+    }, [ipAddress, onSearch, isInitialLoad]);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setIpAddress(e.target.value);
     };
 
-    const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement> | null) => {
+        if (e) {
+            e.preventDefault();
+        }
+
         const data = await fetchLocationData(ipAddress);
         setLocationData(data);
         onSearch(ipAddress);
     };
-
 
     const infoData = locationData
         ? [
