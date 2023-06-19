@@ -2,7 +2,7 @@ import './globals.css'
 import { Rubik } from 'next/font/google'
 import { ReactNode } from 'react'
 
-const rubik = Rubik({ subsets: ['latin'], weight: ["400", "500", "700"] })
+const rubik = Rubik({ subsets: ['latin'], weight: ["400", "500", "700"], variable: '--font-rubik' })
 
 export const metadata = {
   title: 'IP Address Tracker',
@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
-      <body className={rubik.className}>{children}</body>
+      <body className={`${rubik.variable} font-sans`}>{children}</body>
     </html>
   )
 }
