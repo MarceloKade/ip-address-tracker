@@ -1,5 +1,6 @@
+'use client'
 import React from 'react';
-import Leaflet from './Leaflet';
+const LeafletComponent = React.lazy(() => import('./Leaflet'));
 
 interface MainProps {
     location?: {
@@ -9,13 +10,18 @@ interface MainProps {
 }
 
 export default function Main({ location }: MainProps) {
+
     if (!location || !location.lat || !location.lng) {
         return <div>Localização inválida</div>;
     }
 
     return (
         <main>
-            <Leaflet location={location} />
+            {typeof window !== 'undefined' && (
+                <React.Suspense fallback={<div>Loading...</div>}>
+                    <LeafletComponent location={location} />
+                </React.Suspense>
+            )}
         </main>
     );
 }
