@@ -17,11 +17,9 @@ export default function Main({ location }: MainProps) {
 
     return (
         <main>
-            {typeof window !== 'undefined' && (
-                <React.Suspense fallback={<div>Loading...</div>}>
-                    <LeafletComponent location={location} />
-                </React.Suspense>
-            )}
+            <React.Suspense fallback={<div>Loading...</div>}>
+                <LeafletComponent location={location} />
+            </React.Suspense>
         </main>
     );
 }
