@@ -32,7 +32,7 @@ export default function Leaflet({ location }: LeafletProps) {
 
         const popupContent = `
             <div style="text-align: center;">
-                <h2>Você está aqui!</h2>
+                <h2>Sua operadora de internet está aqui!</h2>
             </div>
         `;
 
@@ -45,6 +45,6 @@ export default function Leaflet({ location }: LeafletProps) {
     }, [location]);
 
     return (
-        <div id="map" className='absolute top-0 w-full h-screen -z-10' />
+        <div id="map" className='w-screen xl:h-[704px] md:h-[854px] xs:h-[613px] z-0' />
     );
 }
